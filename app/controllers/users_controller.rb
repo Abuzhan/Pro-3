@@ -33,6 +33,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
@@ -47,7 +48,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone_number, :car_type, :city)
     end
 
     #Before filters

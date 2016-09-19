@@ -6,6 +6,11 @@ class User < ActiveRecord::Base
 	validates :email, presence: true, format: {with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 	has_secure_password
 	validates :password, length: { minimum: 6 }
+	VALID_PHONE_REGEX = /7\d\d\d\d\d\d\d\d\d/i
+	validates :phone_number, presence: true, format: {with: VALID_PHONE_REGEX}, length: { is: 10}, uniqueness: true
+	CITIES = ['Astana', 'Almaty']
+	validates :city, presence: true
+	validates :car_type, presence: true
 
 	def User.new_remember_token
 		SecureRandom.urlsafe_base64
