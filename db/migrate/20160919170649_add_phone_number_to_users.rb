@@ -1,5 +1,5 @@
 class AddPhoneNumberToUsers < ActiveRecord::Migration
   def change
-    change_column :users, :phone_number, :integer, :limit => 8
+    add_column :users, :phone_number, :bigint
   end
 end
