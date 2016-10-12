@@ -8,6 +8,7 @@ gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'active_model_serializers', '0.9.2'
+gem 'pundit', '~> 0.3.0'
 
 group :development, :test do
 	gem 'sqlite3', '1.3.8'
