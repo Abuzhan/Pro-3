@@ -13,7 +13,7 @@ class UserPolicy < ApplicationPolicy
 	end
 
 	def destroy?
-		return false
+		return true if user.admin?
 	end
 
 	class Scope < ApplicationPolicy::Scope
