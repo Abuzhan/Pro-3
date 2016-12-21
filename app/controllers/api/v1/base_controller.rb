@@ -2,6 +2,7 @@ class Api::V1::BaseController < ApplicationController
 	include Pundit
 	include ActiveHashRelation
 
+
 	protect_from_forgery with: :null_session
 
 	before_action :destroy_session
@@ -56,14 +57,19 @@ class Api::V1::BaseController < ApplicationController
 	end
 
 	def authenticate_user!
-		token, options = ActionController::HttpAuthentication::Token.token_and_options(request)
-		user_phone_number = options.blank?? nil : options[:phone_number]
-		user = user_phone_number && User.find_by(phone_number: user_phone_number)
-
-		if user && ActiveSupport::SecurityUtils.secure_compare(user.authentication_token, token)
-			@current_user = user
-		else
-			return unauthenticated!
+		#token, options = ActionController::HttpAuthentication::Token.token_and_options(request)
+		authenticate_or_request_with_http_token do |token, options|
+			User.exists?(authentication_token: token)
 		end
+
+		#user_phone_number = options.blank?? nil : options[:phone_number]
+		#user = user_phone_number && User.find_by(phone_number: user_phone_number)
+
+		#if user && token = User.find_by_authentication_token(params[:authentication_token]) #ActiveSupport::SecurityUtils.secure_compare(user.authentication_token, token)
+		#	@current_user = user
+		#else
+		#	return unauthenticated!
+		#end
+		#@current_user = user
 	end
 end
