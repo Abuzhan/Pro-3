@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone_number, :car_type, :city)
+      params.require(:user).permit(:name, :password, :password_confirmation, :car_number, :phone_number, :car_type, :city)
     end
 
     #Before filters

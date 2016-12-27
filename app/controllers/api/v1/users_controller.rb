@@ -55,7 +55,7 @@ before_filter :authenticate_user!, only: [:show, :update, :destroy]
 
 	def create_params
 		params.require(:user).permit(
-			:phone_number, :password, :password_confirmation, :name, :car_type, :city
+			:phone_number, :password, :password_confirmation, :car_number, :name, :car_type, :city
 		).delete_if{ |k,v| v.nil?}
 	end
 

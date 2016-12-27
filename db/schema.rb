@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161210115537) do
+ActiveRecord::Schema.define(version: 20161227163343) do
 
   create_table "users", force: true do |t|
     t.string   "name"
-    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
@@ -25,9 +24,14 @@ ActiveRecord::Schema.define(version: 20161210115537) do
     t.string   "city"
     t.integer  "phone_number"
     t.string   "authentication_token"
+    t.string   "car_number"
+    t.string   "favorite_1"
+    t.string   "favorite_2"
+    t.string   "favorite_3"
+    t.string   "favorite_4"
+    t.string   "favorite_5"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
