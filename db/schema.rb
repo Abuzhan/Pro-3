@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227163343) do
+ActiveRecord::Schema.define(version: 20161228151653) do
+
+  create_table "carwashes", force: true do |t|
+    t.string   "name"
+    t.integer  "phone_number"
+    t.string   "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password_digest"
+    t.string   "remember_token"
+  end
+
+  add_index "carwashes", ["phone_number"], name: "index_carwashes_on_phone_number", unique: true
+  add_index "carwashes", ["remember_token"], name: "index_carwashes_on_remember_token"
 
   create_table "users", force: true do |t|
     t.string   "name"
