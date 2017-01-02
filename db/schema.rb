@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161228151653) do
+ActiveRecord::Schema.define(version: 20170102093538) do
 
   create_table "carwashes", force: true do |t|
     t.string   "name"
@@ -38,11 +38,6 @@ ActiveRecord::Schema.define(version: 20161228151653) do
     t.integer  "phone_number"
     t.string   "authentication_token"
     t.string   "car_number"
-    t.string   "favorite_1"
-    t.string   "favorite_2"
-    t.string   "favorite_3"
-    t.string   "favorite_4"
-    t.string   "favorite_5"
   end
 
   add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true
