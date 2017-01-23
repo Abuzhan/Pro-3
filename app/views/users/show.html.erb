@@ -8,4 +8,12 @@
 			</h1>
 		</section>
 	</aside>
+	<div class="span8">
+		<ol class="microposts">
+		<%= render @cities %>
+		</ol>
+		
+		<%= will_paginate @cities %>
+
+	</div>
 </div>
