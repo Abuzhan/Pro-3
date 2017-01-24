@@ -1,6 +1,7 @@
 class Carwash < ActiveRecord::Base
 	#before_save { self.email = email.downcase }
 	#before_save { self.car_number = car_number.upcase }
+	belongs_to :city
 	before_create :create_remember_token
 	#before_create :generate_authentication_token
 	validates :name, presence: true, length: { maximum: 50 }, uniqueness: true

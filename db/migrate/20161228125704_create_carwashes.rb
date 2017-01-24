@@ -1,4 +1,4 @@
-class CreateCarwashes < ActiveRecord::Migration
+ modelclass CreateCarwashes < ActiveRecord::Migration
   def change
     create_table :carwashes do |t|
       t.string :name
