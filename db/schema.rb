@@ -11,22 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124122147) do
+ActiveRecord::Schema.define(version: 20170126111116) do
 
   create_table "boxes", force: true do |t|
     t.integer  "carwash_id"
     t.boolean  "online"
-    t.boolean  "status"
+    t.boolean  "status",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "car_types", force: true do |t|
-    t.string   "car_type"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "status"
+    t.boolean  "status",     default: true
   end
+
+  add_index "car_types", ["name"], name: "index_car_types_on_name", unique: true
 
   create_table "carwashes", force: true do |t|
     t.string   "name"
@@ -38,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170124122147) do
     t.string   "remember_token"
     t.integer  "city_id"
     t.string   "contacts"
-    t.boolean  "status",          default: false
+    t.boolean  "status",          default: true
   end
 
   add_index "carwashes", ["phone_number"], name: "index_carwashes_on_phone_number", unique: true
@@ -46,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170124122147) do
 
   create_table "cities", force: true do |t|
     t.string   "name"
-    t.boolean  "status"
+    t.boolean  "status",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,12 +60,13 @@ ActiveRecord::Schema.define(version: 20170124122147) do
     t.integer  "carwash_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status",     default: true
   end
 
   create_table "order_services", force: true do |t|
     t.integer  "order_id"
     t.integer  "service_id"
-    t.boolean  "status"
+    t.boolean  "status",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -74,7 +77,7 @@ ActiveRecord::Schema.define(version: 20170124122147) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "price"
-    t.integer  "status"
+    t.integer  "status",     default: 0
     t.string   "car_number"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -86,7 +89,7 @@ ActiveRecord::Schema.define(version: 20170124122147) do
     t.integer  "service_id"
     t.integer  "car_type_id"
     t.integer  "price"
-    t.boolean  "status"
+    t.boolean  "status",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "duration"
@@ -97,17 +100,19 @@ ActiveRecord::Schema.define(version: 20170124122147) do
     t.integer  "day"
     t.time     "opening_time"
     t.time     "closing_time"
-    t.boolean  "status"
+    t.boolean  "status",       default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "services", force: true do |t|
     t.string   "name"
-    t.boolean  "status"
+    t.boolean  "status",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "services", ["name"], name: "index_services_on_name", unique: true
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -120,6 +125,7 @@ ActiveRecord::Schema.define(version: 20170124122147) do
     t.integer  "city_id",              limit: 255
     t.integer  "phone_number"
     t.string   "authentication_token"
+    t.boolean  "status",                           default: true
   end
 
   add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true
@@ -130,7 +136,7 @@ ActiveRecord::Schema.define(version: 20170124122147) do
     t.integer  "carwash_id"
     t.integer  "fixed_salary"
     t.integer  "percentage"
-    t.boolean  "status"
+    t.boolean  "status",       default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
