@@ -1,4 +1,5 @@
 class Api::V1::SessionsController < Api::V1::BaseController
+	
 	def create
 		user = User.find_by(phone_number: create_params[:phone_number])
 		if user && user.authenticate(create_params[:password])
@@ -13,6 +14,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
 	end
 
 	private
+	
 	def create_params
 		params.require(:user).permit(:phone_number, :password)
 	end

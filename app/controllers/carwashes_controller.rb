@@ -48,7 +48,7 @@ class CarwashesController < ApplicationController
   private
 
   	def carwash_params
-  		params.require(:carwash).permit(:name, :phone_number, :password, :password_confirmation, :address)
+  		params.require(:carwash).permit(:name, :phone_number, :password, :password_confirmation, :address, :city_id, :contacts)
   	end
 #Before filters
 

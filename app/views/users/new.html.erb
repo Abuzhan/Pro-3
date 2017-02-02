@@ -22,19 +22,19 @@
 			<%= f.text_field :car_number %>
 
 			<%= f.label :car_type %>
-			<%= f.radio_button :car_type, "a" %>
-				<%= f.label :car_type_a, "Малолитражка" %>
-			<%= f.radio_button :car_type, "b" %>
-				<%= f.label :car_type_b, "Седан" %>
-			<%= f.radio_button :car_type, "c" %>
-				<%= f.label :car_type_c, "Представительская" %>
-			<%= f.radio_button :car_type, "d" %>
-				<%= f.label :car_type_d, "Кроссовер" %>
-			<%= f.radio_button :car_type, "e" %>
-				<%= f.label :car_type_e, "Внедорожник" %>
+			<%= f.radio_button :car_type_id, "1" %>
+				<%= f.label :car_type_id_1, "Малолитражка" %>
+			<%= f.radio_button :car_type_id, "2" %>
+				<%= f.label :car_type_id_2, "Седан" %>
+			<%= f.radio_button :car_type_id, "3" %>
+				<%= f.label :car_type_id_3, "Представительская" %>
+			<%= f.radio_button :car_type_id, "4" %>
+				<%= f.label :car_type_id_4, "Кроссовер" %>
+			<%= f.radio_button :car_type_id, "5" %>
+				<%= f.label :car_type_id_5, "Внедорожник" %>
 
-			<%= f.label :city %>
-			<%= f.collection_select :city, User::CITIES, :to_s, :to_s, :include_blank => true %>
+			<%= f.label :city_id %>
+			<%= f.text_field :city_id %>
 
 			<%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
 		<% end %>
