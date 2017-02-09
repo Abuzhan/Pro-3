@@ -17,7 +17,7 @@ gem 'active_hash_relation'
 gem 'sqlite3', '1.3.8'
 gem 'nokogiri', '1.6.7.1'
 
-gem 'puma'
+gem 'puma', '3.6.2'
 
 
 
