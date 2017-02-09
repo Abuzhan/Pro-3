@@ -33,7 +33,7 @@
 # set :keep_releases, 5
 
 # Change these
-server '188.166.67.7', port: 80, roles: [:web, :app, :db], primary: true
+server '188.166.67.7', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'https://github.com/Abuzhan/Jacuzzi.git'
 set :application,     'jacuzzi'
