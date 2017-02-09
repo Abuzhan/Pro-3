@@ -13,15 +13,25 @@ gem 'rake', '< 11.0'
 
 gem 'active_hash_relation'
 
-gem 'passenger'
+# gem 'passenger'
 gem 'sqlite3', '1.3.8'
 gem 'nokogiri', '1.6.7.1'
+
+gem 'puma'
 
 
 
 group :development, :test do
 
 	gem 'rspec-rails', '2.13.1'
+end
+
+group :development do
+	gem 'capistrano',         require: false
+	gem 'capistrano-rvm',     require: false
+	gem 'capistrano-rails',   require: false
+	gem 'capistrano-bundler', require: false
+	gem 'capistrano-puma',    require: false
 end
 
 group :test do
