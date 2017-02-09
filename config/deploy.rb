@@ -36,7 +36,7 @@
 server '188.166.67.7', port: 80, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'https://github.com/Abuzhan/Jacuzzi.git'
-set :application,     'jacuzzi	'
+set :application,     'jacuzzi'
 set :user,            'deploy'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
