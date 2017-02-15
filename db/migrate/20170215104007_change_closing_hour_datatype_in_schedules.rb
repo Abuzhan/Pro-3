@@ -1,7 +1,7 @@
 class ChangeClosingHourDatatypeInSchedules < ActiveRecord::Migration
 
   def self.up
-  	change_column :schedules, :closing_hour, :integer
+  	change_column :schedules, :closing_hour, 'integer USING CAST("closing_hour" AS integer)'
   end
 
   def self.down
