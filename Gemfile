@@ -13,26 +13,26 @@ gem 'rake', '< 11.0'
 
 gem 'active_hash_relation'
 
-# gem 'passenger'
-gem 'sqlite3', '1.3.8'
+#gem 'passenger'
+
 gem 'nokogiri', '1.6.7.1'
 
-gem 'puma', '2.10.0' 
+#gem 'puma', '2.10.0' 
 
 
 
 group :development, :test do
-
+	gem 'sqlite3', '1.3.8'
 	gem 'rspec-rails', '2.13.1'
 end
 
-group :development do
-	gem 'capistrano',         require: false
-	gem 'capistrano-rvm',     require: false
-	gem 'capistrano-rails',   require: false
-	gem 'capistrano-bundler', require: false
-	gem 'capistrano3-puma',    require: false
-end
+#group :development do
+#	gem 'capistrano',         require: false
+#	gem 'capistrano-rvm',     require: false
+#	gem 'capistrano-rails',   require: false
+#	gem 'capistrano-bundler', require: false
+#	gem 'capistrano3-puma',    require: false
+#end
 
 group :test do
 	gem 'selenium-webdriver', '2.35.1'
@@ -54,7 +54,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-#group :production do
-#	gem 'pg', '0.15.1'
-#	gem 'rails_12factor', '0.0.2'
-#end
+group :production do
+	gem 'pg', '0.15.1'
+	gem 'rails_12factor', '0.0.2'
+end
