@@ -22,6 +22,7 @@ before_filter :authenticate_user!, only: [:show, :update, :destroy]
 			status: 201,
 			location: api_v1_user_path(user.id)
 		)
+		
 	end
 
 	def update

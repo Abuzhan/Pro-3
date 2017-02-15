@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126111116) do
+ActiveRecord::Schema.define(version: 20170215104007) do
 
   create_table "boxes", force: true do |t|
     t.integer  "carwash_id"
@@ -93,16 +93,19 @@ ActiveRecord::Schema.define(version: 20170126111116) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "duration"
+    t.boolean  "online"
   end
 
   create_table "schedules", force: true do |t|
     t.integer  "carwash_id"
     t.integer  "day"
-    t.time     "opening_time"
-    t.time     "closing_time"
-    t.boolean  "status",       default: true
+    t.integer  "opening_hour"
+    t.integer  "closing_hour"
+    t.boolean  "status",         default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "opening_minute"
+    t.integer  "closing_minute"
   end
 
   create_table "services", force: true do |t|
