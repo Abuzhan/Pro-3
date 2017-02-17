@@ -7,12 +7,14 @@ class Carwash < ActiveRecord::Base
 	#CITIES = ['Astana', 'Almaty']
 
 	belongs_to :city
+	belongs_to :user
 	
 	has_many :boxes
 	has_many :schedules
 	has_many :prices
 	has_many :workers
-	has_many :favorites
+	has_many :favorites, foreign_key: "carwash_id", dependent: :destroy
+	has_many :favoring_users, through: :favorites, source: :user
 	
 	before_create :create_remember_token
 	has_secure_password

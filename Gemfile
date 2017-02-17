@@ -7,7 +7,7 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
-gem 'active_model_serializers', '0.9.2'
+gem 'active_model_serializers'
 gem 'pundit', '~> 0.3.0'
 gem 'rake', '< 11.0'
 

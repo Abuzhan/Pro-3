@@ -11,8 +11,10 @@ class User < ActiveRecord::Base
 	belongs_to :city
 	belongs_to :car_type
 	
-	has_many :favorites
+	has_many :favorites, dependent: :destroy
+	has_many :favorite_carwashes, through: :favorites, source: :carwash
 	has_many :orders
+	has_many :carwashes
 	
 	before_create :create_remember_token
 	before_create :generate_authentication_token
@@ -37,6 +39,14 @@ class User < ActiveRecord::Base
 
 	def User.new_token
 		SecureRandom.urlsafe_base64
+	end
+
+	def favorite?(carwash)
+		favorites.find_by(carwash_id: carwash.id)
+	end
+
+	def favorite!(carwash)
+		favorites.create!(carwash_id: carwash.id)
 	end
 
 	private

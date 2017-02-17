@@ -1,5 +1,9 @@
  SampleApp::Application.routes.draw do
-  resources :users
+  resources :users do
+    member do
+      get :favorite_carwashes
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :carwashes
   resources :cw_sessions, only: [:new, :create, :destroy]
