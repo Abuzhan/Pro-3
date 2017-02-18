@@ -4,10 +4,15 @@ class Api::V1::SessionsController < Api::V1::BaseController
 		user = User.find_by(phone_number: create_params[:phone_number])
 		if user && user.authenticate(create_params[:password])
 			self.current_user = user
-			current_city = user.city
+			#current_city = user.city
+			#response = Api::V1::SessionSerializer.new(user, root: false).to_json
+			#response.attributes.merge(Api::V1::CitySerializer.new(user.city, root: false).to_json)
+			#render json: response
+
+
 			render(
-				json: Api::V1::SessionSerializer.new(user, root: false).to_json,
-				json: Api::V1::CarwashSerializer.new(user.city, root: false).to_json,
+				json:  Api::V1::SessionSerializer.new(user, root: false).to_json, 
+				#json: Api::V1::CitySerializer.new(user.city, root: false).to_json,
 				status: 201
 				)
 		else
