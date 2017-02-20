@@ -1,9 +1,10 @@
 class Api::V1::SessionSerializer < Api::V1::BaseSerializer
-	attributes :id, :phone_number, :name, :token, :car_type_id, :car_type_name, :city_id, :city_name
+	attributes :id, :phone_number, :name, :token, :car_type_id, :car_type_name#, :city_id, :city_name
 	
 	belongs_to :city
 
 	has_many :favorite_carwashes, serializer: Api::V1::CarwashSerializer
+
 
 
 	def token
