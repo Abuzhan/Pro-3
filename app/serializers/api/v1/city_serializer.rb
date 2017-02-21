@@ -1,6 +1,6 @@
 class Api::V1::CitySerializer < Api::V1::BaseSerializer
 	
-	attributes :id, :name, :status, :city_carwashes
+	attributes :id, :name#, :city_carwashes
 	#has_many :carwashes, serializer: Api::V1::CarwashcSerializer
 
 
@@ -11,7 +11,7 @@ class Api::V1::CitySerializer < Api::V1::BaseSerializer
 	end
 
 	class CarwashSerializer < Api::V1::BaseSerializer
-		attributes :id, :name, :address, :carwash_city_id, :carwash_city_name, :example
+		attributes :id, :name, :address, :example#, :carwash_city_id, :carwash_city_name
 	
 		#belongs_to :session
 		#belongs_to :user
@@ -26,13 +26,13 @@ class Api::V1::CitySerializer < Api::V1::BaseSerializer
 		end
 
 		def example
-			object.prices.map do |price|
+			object.prices.where("service_id = '1' and car_type_id = '1'").map do |price|
 				Api::V1::CitySerializer::CarwashSerializer::PriceSerializer.new(price, scope: scope, root: false, carwash: object)
 			end
 		end
 
 		class PriceSerializer < Api::V1::BaseSerializer
-			attribute :price, if: :KS_for_1?
+			attribute :price#, if: :KS_for_1?
 
 		#	def lowest
 		#		if KS_for_1?
@@ -42,9 +42,9 @@ class Api::V1::CitySerializer < Api::V1::BaseSerializer
 		#		end
 		#	end
 
-			def KS_for_1?
-				object.service_id == 1 && object.car_type_id == 1
-			end
+		#	def KS_for_1?
+		#		object.service_id == 1 && object.car_type_id == 1
+		#	end
 
 
 		end

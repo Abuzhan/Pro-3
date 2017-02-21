@@ -1,7 +1,7 @@
 class Api::V1::SessionSerializer < Api::V1::BaseSerializer
-	attributes :id, :phone_number, :name, :token, :car_type_id, :car_type_name#, :city_id, :city_name
+	attributes :id, :phone_number, :name, :token, :car_type_id, :car_type_name, :city_id, :city_name, :city_carwashes
 	
-	belongs_to :city
+	#belongs_to :city
 
 	has_many :favorite_carwashes, serializer: Api::V1::CarwashSerializer
 
@@ -27,4 +27,32 @@ class Api::V1::SessionSerializer < Api::V1::BaseSerializer
 		object.city.id
 	end
 
+	def city_carwashes
+		object.city.carwashes.map do |carwash|
+				Api::V1::SessionSerializer::CarwashSerializer.new(carwash, scope: scope, root: false, city: object)
+			end
+		end
+
+		class CarwashSerializer < Api::V1::BaseSerializer
+			attributes :id, :name, :address, :example#, :carwash_city_id, :carwash_city_name
+
+			def carwash_city_name
+				object.city.name
+			end
+
+			def carwash_city_id
+				object.city.id
+			end
+
+			def example
+				object.prices.where("service_id = '1' and car_type_id = '1'").map do |price|
+					Api::V1::SessionSerializer::CarwashSerializer::PriceSerializer.new(price, scope: scope, root: false, carwash: object)
+				end
+			end
+
+			class PriceSerializer < Api::V1::BaseSerializer
+				attribute :price#, if: :KS_for_1?
+			end
+		end
+	
 end

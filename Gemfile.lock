@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/kollegorna/active_hash_relation.git
+  revision: e569c1ef8458f4c625b83568ff2dcf5863f35f47
+  specs:
+    active_hash_relation (1.4.0)
+      activerecord
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -10,8 +17,6 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    active_hash_relation (1.4.0)
-      activerecord
     active_model_serializers (0.10.0)
       actionpack (>= 4.0)
       activemodel (>= 4.0)
@@ -164,7 +169,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_hash_relation
+  active_hash_relation!
   active_model_serializers
   bcrypt-ruby (= 3.1.2)
   bootstrap-sass (= 2.3.2.0)

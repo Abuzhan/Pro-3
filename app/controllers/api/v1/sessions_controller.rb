@@ -1,5 +1,23 @@
 class Api::V1::SessionsController < Api::V1::BaseController
 	
+	def index
+		cities = City.all
+		car_types = CarType.all
+
+		#cities = apply_filters(cities, params)
+		#car_types = apply_filters(car_types, params)
+
+		render(
+			json: ActiveModel::ArraySerializer.new(
+				users, 
+				each_serializer: Api::V1::CitySerializer,
+				root: 'cities',
+				meta: meta_attributes(cities)
+			)
+		)
+	end
+
+
 	def create
 		user = User.find_by(phone_number: create_params[:phone_number])
 		if user && user.authenticate(create_params[:password])
