@@ -1,20 +1,17 @@
 class Api::V1::SessionsController < Api::V1::BaseController
+	include ActiveHashRelation
 	
 	def index
-		cities = City.all
-		car_types = CarType.all
+		@cities = City.all
+		@car_types = CarType.all
 
 		#cities = apply_filters(cities, params)
 		#car_types = apply_filters(car_types, params)
 
-		render(
-			json: ActiveModel::ArraySerializer.new(
-				users, 
-				each_serializer: Api::V1::CitySerializer,
-				root: 'cities',
-				meta: meta_attributes(cities)
-			)
-		)
+		render :json => {:cities => @cities.as_json(:only => [:id, :name]),#root: true each_serializer: Api::V1::CitySerializer,
+						 :car_types => @car_types.as_json(:only => [:id, :name])}
+
+
 	end
 
 
@@ -29,7 +26,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
 
 
 			render(
-				json:  Api::V1::SessionSerializer.new(user, root: false).to_json, 
+				:json => Api::V1::SessionSerializer.new(user, root: false).to_json, 
 				#json: Api::V1::CitySerializer.new(user.city, root: false).to_json,
 				status: 201
 				)
@@ -43,5 +40,5 @@ class Api::V1::SessionsController < Api::V1::BaseController
 	def create_params
 		params.require(:user).permit(:phone_number, :password)
 	end
-
+	
 end
