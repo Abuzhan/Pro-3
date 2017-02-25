@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 gem 'bootstrap-sass', '2.3.2.0'
@@ -16,7 +16,8 @@ gem 'active_hash_relation', github: 'kollegorna/active_hash_relation'
 #gem 'passenger'
 
 gem 'nokogiri', '1.6.7.1'
-
+gem 'rails_admin', '~>1.0'
+#gem 'activeadmin', '0.6.6' #github: 'activeadmin'
 
 #gem 'puma', '2.10.0' 
 

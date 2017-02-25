@@ -1,4 +1,5 @@
  SampleApp::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :users do
     member do
       get :favorite_carwashes
