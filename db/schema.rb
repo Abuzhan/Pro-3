@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20170215133320) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "price"
-    t.integer  "status",     default: 0
+    t.integer  "status"
     t.string   "car_number"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -17,6 +17,7 @@ gem 'active_hash_relation', github: 'kollegorna/active_hash_relation'
 
 gem 'nokogiri', '1.6.7.1'
 
+
 #gem 'puma', '2.10.0' 
 
 
