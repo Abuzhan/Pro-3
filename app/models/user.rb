@@ -27,7 +27,23 @@ class User < ActiveRecord::Base
 	validates :phone_number, presence: true, format: {with: VALID_PHONE_REGEX}, length: { is: 10}, uniqueness: true
 	validates :car_type_id, presence: true
 
+	#attr_accessible :carwash_ids
 
+
+	#def carwash_ids=(ids)
+    #	ids = ids.reject{|i| i == "" || i == nil}.map{|i| i.to_i}
+    #	current_ids = favorites.map(&:block_id)
+	 #   if current_ids != ids
+	  #    destroy_outdated_carwash_associations(current_ids, ids)
+	   #   ids.each_with_index do |id, index|
+	    #    if current_ids.include? (id)
+	     #     update_carwash_association_position(id, index+1)
+	      #  else
+	       #   favorites.build({:block_id => id, :position => (index+1)})
+	        #end
+#	      end
+#	    end
+#	end
 
 	def User.new_remember_token
 		SecureRandom.urlsafe_base64
@@ -61,4 +77,12 @@ class User < ActiveRecord::Base
 				break unless User.find_by(authentication_token: authentication_token)
 			end
 		end
+
+#		def destroy_outdated_carwash_associations(current_ids, ids)
+ #   		(current_ids - ids).each { |id| favorites.select{|b| b.carwash_id == id}.first.destroy }
+#	  	end
+#
+#	  	def update_carwash_association_position(id, position)
+#	    	favorites.select { |b| b.carwash_id == id }.first.update_attributes(position: position)
+#		end
 end

@@ -27,6 +27,15 @@ class Carwash < ActiveRecord::Base
 	validates :contacts, length: { maximum: 140 }
 	validates :address, presence: true, length: { maximum: 100 }
 
+	#rails_admin do 
+	#	configure :favorites do
+	#		visible(false)
+	#	end
+
+		#configure :carwashes do
+		#	visible(true)
+		#send
+	#end
 
 	def User.new_remember_token
 		SecureRandom.urlsafe_base64
