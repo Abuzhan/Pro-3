@@ -9,7 +9,9 @@ class Api::V1::SessionsController < Api::V1::BaseController
 		#car_types = apply_filters(car_types, params)
 
 		render :json => {:cities => @cities.as_json(:only => [:id, :name]),#root: true each_serializer: Api::V1::CitySerializer,
-						 :car_types => @car_types.as_json(:only => [:id, :name])}
+						 :car_types => @car_types.as_json(:only => [:id, :name])#,
+						 #:users => Api::V1::SessionSerializer.new(user, root: false).to_json
+						}
 
 
 	end
@@ -17,6 +19,8 @@ class Api::V1::SessionsController < Api::V1::BaseController
 
 	def create
 		user = User.find_by(phone_number: create_params[:phone_number])
+		@cities = City.all
+		@car_types = CarType.all
 		if user && user.authenticate(create_params[:password])
 			self.current_user = user
 			#current_city = user.city
@@ -25,11 +29,16 @@ class Api::V1::SessionsController < Api::V1::BaseController
 			#render json: response
 
 
-			render(
-				:json => Api::V1::SessionSerializer.new(user, root: false).to_json, 
-				#json: Api::V1::CitySerializer.new(user.city, root: false).to_json,
-				status: 201
-				)
+			render status: 201, :json => {:cities => @cities.as_json(:only => [:id, :name]),#root: true each_serializer: Api::V1::CitySerializer,
+						 :car_types => @car_types.as_json(:only => [:id, :name]),
+						 :user => Api::V1::SessionSerializer.new(user, root: false).as_json
+						}
+
+			#render(
+			#	:json => Api::V1::SessionSerializer.new(user, root: false).to_json, 
+			#	#json: Api::V1::CitySerializer.new(user.city, root: false).to_json,
+			#	status: 201
+			#	)
 		else
 			return api_error(status: 401)
 		end
@@ -40,5 +49,4 @@ class Api::V1::SessionsController < Api::V1::BaseController
 	def create_params
 		params.require(:user).permit(:phone_number, :password)
 	end
-	
-end
+	end
