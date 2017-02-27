@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/kollegorna/active_hash_relation.git
+  remote: https://github.com/kollegorna/active_hash_relation.git
   revision: e569c1ef8458f4c625b83568ff2dcf5863f35f47
   specs:
     active_hash_relation (1.4.0)

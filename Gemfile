@@ -11,7 +11,7 @@ gem 'active_model_serializers'
 gem 'pundit', '~> 0.3.0'
 gem 'rake', '< 11.0'
 
-gem 'active_hash_relation', github: 'kollegorna/active_hash_relation'
+gem 'active_hash_relation', git: "https://github.com/kollegorna/active_hash_relation.git"#hub: 'kollegorna/active_hash_relation'
 
 #gem 'passenger'
 
