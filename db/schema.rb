@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170215133320) do
+ActiveRecord::Schema.define(version: 20170227102247) do
 
   create_table "boxes", force: true do |t|
     t.integer  "carwash_id"
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20170215133320) do
     t.string   "remember_token"
     t.boolean  "admin",                            default: false
     t.integer  "car_type_id",          limit: 255
-    t.integer  "city_id",              limit: 255
+    t.integer  "city_id"
     t.integer  "phone_number"
     t.string   "authentication_token"
     t.boolean  "status",                           default: true
