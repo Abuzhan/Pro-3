@@ -7,7 +7,7 @@ class Carwash < ActiveRecord::Base
 	#CITIES = ['Astana', 'Almaty']
 
 	belongs_to :city
-	belongs_to :user
+	#belongs_to :user
 	
 	has_many :boxes
 	has_many :schedules

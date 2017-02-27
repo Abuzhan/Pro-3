@@ -8,7 +8,7 @@ class Price < ActiveRecord::Base
 	#validates :duration, presence: true, length: { maximum: 1 }
 	validates :carwash_id, presence: true
 	validates :service_id, presence: true
-	validates :user_id, presence: true
+	#validates :user_id, presence: true
 
 
 end

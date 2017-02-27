@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 	has_many :favorites, dependent: :destroy
 	has_many :favorite_carwashes, through: :favorites, source: :carwash
 	has_many :orders
-	has_many :carwashes
+	#has_many :carwashes
 	
 	before_create :create_remember_token
 	before_create :generate_authentication_token
