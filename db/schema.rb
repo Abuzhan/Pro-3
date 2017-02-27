@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227102247) do
+ActiveRecord::Schema.define(version: 20170227103152) do
 
   create_table "boxes", force: true do |t|
     t.integer  "carwash_id"
