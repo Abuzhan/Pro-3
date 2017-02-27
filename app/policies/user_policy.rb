@@ -1,6 +1,6 @@
 class UserPolicy < ApplicationPolicy
 	def show?
-		return true
+		return true if record.id == user.id
 	end
 
 	def create?
