@@ -10,7 +10,6 @@ class Api::V1::SessionsController < Api::V1::BaseController
 
 		render :json => {:cities => @cities.as_json(:only => [:id, :name]),#root: true each_serializer: Api::V1::CitySerializer,
 						 :car_types => @car_types.as_json(:only => [:id, :name])#,
-						 #:users => Api::V1::SessionSerializer.new(user, root: false).to_json
 						}
 
 
