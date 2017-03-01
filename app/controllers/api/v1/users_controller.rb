@@ -12,8 +12,8 @@ class Api::V1::UsersController < Api::V1::BaseController
 						only: 
 							[:id, :name, :phone_number, :created_at], 
 						include: { 
-							city: { only: [:id, :name]}, 
-							car_type: { only: [:id, :name]}
+							car_type: { only: [:id, :name]},
+							city: { only: [:id, :name]} 
 							}
 					)
 		}

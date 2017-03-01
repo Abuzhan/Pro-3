@@ -1,5 +1,5 @@
 class Api::V1::UserSerializer < Api::V1::BaseSerializer
-	attributes :id, :phone_number, :name, :token, :created_at, :updated_at, :car_type_id, :car_type_name, :city_id, :city_name, :city_carwashes
+	attributes :id, :name, :phone_number, :token, :created_at, :car_type_id, :car_type_name, :city_id, :city_name, :city_carwashes
 
 	def token
 		object.authentication_token

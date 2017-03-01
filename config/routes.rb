@@ -6,7 +6,7 @@
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
-  resources :carwashes
+  resources :carwashes, only: [:new, :index, :show, :update]
   resources :cw_sessions, only: [:new, :create, :destroy]
   root 'static_pages#home'
   match '/signup',     to: 'users#new',            via: 'get'
