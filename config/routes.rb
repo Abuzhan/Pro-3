@@ -1,14 +1,17 @@
  SampleApp::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  
   resources :users do
     member do
       get :favorite_carwashes
     end
   end
+
   resources :favorites, only: [:index]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :carwashes, only: [:new, :index, :show, :update]
+  resources :carwashes, only: [:new, :create, :index, :show, :update]
   resources :cw_sessions, only: [:new, :create, :destroy]
+
   root 'static_pages#home'
   match '/signup',        to: 'users#new',            via: 'get'
   match '/signin',        to: 'sessions#new',         via: 'get'
