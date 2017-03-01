@@ -5,6 +5,7 @@
       get :favorite_carwashes
     end
   end
+  resources :favorites, only: [:index]
   resources :sessions, only: [:new, :create, :destroy]
   resources :carwashes, only: [:new, :index, :show, :update]
   resources :cw_sessions, only: [:new, :create, :destroy]
@@ -28,6 +29,7 @@
       resources :users, only: [:index, :create, :show, :update, :destroy]
       resources :sessions, only: [:create, :index]
       resources :carwashes, only: [:show, :index]
+      resources :favorites, only: [:index]
     end
   end
   

@@ -25,7 +25,7 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 	end
 
 	def index
-		@user = User.find_by(params[:id])
+		#@user = User.find_by(params[:id])
 		request_city_id = request.headers['City']
 		@city = City.find(request_city_id)
 		#@carwashes = Carwash.all
