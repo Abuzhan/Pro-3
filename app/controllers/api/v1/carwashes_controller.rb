@@ -26,9 +26,11 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 
 	def index
 		@user = User.find_by(params[:id])
-		@carwashes = Carwash.all
-		render :json => {
-			:Response => Api::V1::CitySerializer.new(@user.city, root: false).as_json,
-		}
+		request_city_id = request.headers['City']
+		@city = City.find(request_city_id)
+		#@carwashes = Carwash.all
+		render(
+			json:Api::V1::CitySerializer.new(@city, root: false).as_json,
+		)
 	end
 end
