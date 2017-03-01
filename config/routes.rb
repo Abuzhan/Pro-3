@@ -10,17 +10,18 @@
   resources :carwashes, only: [:new, :index, :show, :update]
   resources :cw_sessions, only: [:new, :create, :destroy]
   root 'static_pages#home'
-  match '/signup',     to: 'users#new',            via: 'get'
-  match '/signin',     to: 'sessions#new',         via: 'get'
-  match '/signin',     to: 'sessions#create',      via: 'post'
-  match '/signout',    to: 'sessions#destroy',     via: 'delete'
-  match '/carwashup',  to: 'carwashes#new',        via: 'get'
-  match '/carwashin',  to: 'cw_sessions#new',      via: 'get'
-  match '/carwashin',  to: 'cw_sessions#create',   via: 'post'
-  match '/carwashout', to: 'cw_sessions#destroy',  via: 'delete'
-  match '/help',       to: 'static_pages#help',    via: 'get'
-  match '/about',      to: 'static_pages#about',   via: 'get'
-  match '/contact',    to: 'static_pages#contact', via: 'get'
+  match '/signup',        to: 'users#new',            via: 'get'
+  match '/signin',        to: 'sessions#new',         via: 'get'
+  match '/signin',        to: 'sessions#create',      via: 'post'
+  match '/signout',       to: 'sessions#destroy',     via: 'delete'
+  match '/carwashup',     to: 'carwashes#new',        via: 'get'
+  match '/carwashin',     to: 'cw_sessions#new',      via: 'get'
+  match '/carwashin',     to: 'cw_sessions#create',   via: 'post'
+  match '/carwashout',    to: 'cw_sessions#destroy',  via: 'delete'
+  match '/help',          to: 'static_pages#help',    via: 'get'
+  match '/about',         to: 'static_pages#about',   via: 'get'
+  match '/contact',       to: 'static_pages#contact', via: 'get'
+  match '/favorites/:id', to: 'favorites#index',      via:'get'
   
 
   #api
@@ -30,6 +31,7 @@
       resources :sessions, only: [:create, :index]
       resources :carwashes, only: [:show, :index]
       resources :favorites, only: [:index]
+      match '/favorites/:id', to: 'favorites#index',      via:'get'
     end
   end
   
