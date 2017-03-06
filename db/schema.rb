@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306154701) do
+ActiveRecord::Schema.define(version: 20170306154550) do
 
   create_table "boxes", force: true do |t|
     t.integer  "carwash_id"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20170306154701) do
     t.integer  "worker_id"
     t.integer  "combo_id"
     t.string   "car_number"
-    t.integer  "status"
+    t.boolean  "status"
     t.integer  "discount"
     t.datetime "start_time"
     t.datetime "end_time"
