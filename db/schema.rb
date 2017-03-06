@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227103152) do
+ActiveRecord::Schema.define(version: 20170306152623) do
 
   create_table "boxes", force: true do |t|
     t.integer  "carwash_id"
@@ -55,6 +55,17 @@ ActiveRecord::Schema.define(version: 20170227103152) do
 
   add_index "cities", ["name"], name: "index_cities_on_name", unique: true
 
+  create_table "combos", force: true do |t|
+    t.string   "name"
+    t.integer  "carwash_id"
+    t.integer  "car_type_id"
+    t.integer  "price"
+    t.string   "description"
+    t.boolean  "status",      default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "favorites", force: true do |t|
     t.integer  "user_id"
     t.integer  "carwash_id"
@@ -63,25 +74,61 @@ ActiveRecord::Schema.define(version: 20170227103152) do
     t.boolean  "status",     default: true
   end
 
-  create_table "order_services", force: true do |t|
+  create_table "offorders", force: true do |t|
+    t.integer  "box_id"
+    t.integer  "worker_id"
+    t.integer  "combo_id"
+    t.string   "car_number"
+    t.boolean  "status",     default: true
+    t.integer  "discount"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "details"
+    t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "offorderservices", force: true do |t|
     t.integer  "order_id"
-    t.integer  "service_id"
+    t.boolean  "status",      default: true
+    t.integer  "offprice_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "offprices", force: true do |t|
+    t.integer  "carwash_id"
+    t.integer  "offservice_id"
+    t.integer  "car_type_id"
+    t.integer  "price"
+    t.string   "description"
+    t.boolean  "status",        default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "offservices", force: true do |t|
+    t.string   "name"
     t.boolean  "status",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "offservices", ["name"], name: "index_offservices_on_name", unique: true
 
   create_table "orders", force: true do |t|
     t.integer  "user_id"
     t.integer  "box_id"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer  "price"
-    t.integer  "status"
+    t.integer  "price_id"
+    t.integer  "status",     default: 0
     t.string   "car_number"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "worker_id"
+    t.integer  "discount"
   end
 
   create_table "prices", force: true do |t|
@@ -92,20 +139,22 @@ ActiveRecord::Schema.define(version: 20170227103152) do
     t.boolean  "status",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "duration"
+    t.string   "description"
     t.boolean  "online"
   end
 
   create_table "schedules", force: true do |t|
     t.integer  "carwash_id"
-    t.integer  "day"
-    t.boolean  "status",         default: true
+    t.boolean  "status",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "opening_minute"
-    t.integer  "closing_minute"
-    t.integer  "opening_hour"
-    t.integer  "closing_hour"
+    t.string   "monday"
+    t.string   "tuesday"
+    t.string   "wednesday"
+    t.string   "thursday"
+    t.string   "friday"
+    t.string   "saturday"
+    t.string   "sunday"
   end
 
   create_table "services", force: true do |t|
