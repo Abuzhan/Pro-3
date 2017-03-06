@@ -1,0 +1,5 @@
+class ChangeDefaultValueForStatusInOrders < ActiveRecord::Migration
+  def change
+  	change_column_default :orders, :status, nilrake
+  end
+end
