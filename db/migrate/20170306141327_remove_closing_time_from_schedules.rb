@@ -1,5 +1,5 @@
 class RemoveClosingTimeFromSchedules < ActiveRecord::Migration
   def change
-  	remove_column :schedules, :closing_time, :integer
+  	remove_column :schedules, :closing_hour, :integer
   end
 end
