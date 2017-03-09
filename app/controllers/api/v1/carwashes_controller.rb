@@ -5,6 +5,14 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 
 	def show
 		@carwash = Carwash.find(params[:id])
+		request_user_id = request.headers['User']
+		@user = User.find(request_user_id)
+		if @user.favorite?(@carwash)
+			favorite = "Yes"
+		else
+			favorite = "No"
+		end
+		
 
 		render :json => {
 			:carwash => @carwash.as_json(
@@ -13,14 +21,26 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 					city: { only: [:id, :name]}
 					}, 
 				include: { 
-					prices: { only: [:id, :price], 
+					prices: { only: [:id, :price, :description], 
 						include: { 
 							car_type: { only: [:id, :name]}, 
 							service: {only: [:id, :name]}
 						}
+					},
+					offprices: { only: [:id, :price, :description], 
+						include: { 
+							car_type: { only: [:id, :name]}, 
+							offservice: {only: [:id, :name]}
+						}
+					},
+					combos: { only: [:id, :name, :price, :description],
+						include: { 
+							car_type: { only: [:id, :name]}
+						}
 					}
 				}
-			)
+			),
+			:favorite? => favorite.as_json
 		}
 	end
 
@@ -33,4 +53,5 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 			json:Api::V1::CitySerializer.new(@city, root: false).as_json,
 		)
 	end
+
 end

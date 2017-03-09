@@ -28,7 +28,7 @@ class Api::V1::UserSerializer < Api::V1::BaseSerializer
 		end
 
 		class CarwashSerializer < Api::V1::BaseSerializer
-			attributes :id, :name, :address, :example#, :carwash_city_id, :carwash_city_name
+			attributes :id, :name, :address, :carwash_city_id, :carwash_city_name, :example
 
 			def carwash_city_name
 				object.city.name
