@@ -6,6 +6,6 @@ class Box < ActiveRecord::Base
 	has_many :offorders
 
 	validates :carwash_id, presence: true
-	validates :online, presence: true
+	#validates :online, presence: true
 	
 end

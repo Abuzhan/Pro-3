@@ -18,9 +18,7 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 			:carwash => @carwash.as_json(
 				only: [:id, :name, :phone_number, :address, :contacts], 
 				include: { 
-					city: { only: [:id, :name]}
-					}, 
-				include: { 
+					city: { only: [:id, :name]},
 					prices: { only: [:id, :price, :description], 
 						include: { 
 							car_type: { only: [:id, :name]}, 

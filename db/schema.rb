@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306154550) do
+ActiveRecord::Schema.define(version: 20170310052954) do
 
   create_table "boxes", force: true do |t|
     t.integer  "carwash_id"
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 20170306154550) do
     t.datetime "updated_at"
     t.integer  "worker_id"
     t.integer  "discount"
+    t.string   "details"
   end
 
   create_table "prices", force: true do |t|
@@ -140,7 +141,6 @@ ActiveRecord::Schema.define(version: 20170306154550) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description"
-    t.boolean  "online"
   end
 
   create_table "schedules", force: true do |t|
