@@ -12,10 +12,10 @@ class Order < ActiveRecord::Base
 	validates :start_time, presence: true
 	validates :end_time, presence: true
 	validates :price_id, presence: true
-	validates :car_number, presence: true, length: { minimum: 7, maximum: 8}, format: {with: VALID_CARNUMBER_REGEX}
+	validates :car_number, length: { minimum: 7, maximum: 8}, format: {with: VALID_CARNUMBER_REGEX}
 	validates :user_id, presence: true
 	validates :box_id, presence: true
-	validates :worker_id, presence: true
+	#validates :worker_id, presence: true
 	validates :discount, length: {maximum: 6}
 	validates :details, length: {maximum: 150}
 	
