@@ -11,7 +11,7 @@ class Api::V1::TomorrowSerializer < Api::V1::BaseSerializer
 		attributes :id, :orders, :offorders
 
 		def orders
-			object.orders.where("status = '1' and date(start_time) == ?",DateTime.now.tomorrow.to_date).map do |order|
+			object.orders.where("status = '1' and date(start_time) = ?",DateTime.now.tomorrow.to_date).map do |order|
 				Api::V1::TomorrowSerializer::BoxSerializer::OrderSerializer.new(order, scope: scope, root: false, box: object)
 			end
 		end
@@ -21,7 +21,7 @@ class Api::V1::TomorrowSerializer < Api::V1::BaseSerializer
 		end
 
 		def offorders
-			object.offorders.where("status = '1' and date(start_time) == ?",DateTime.now.tomorrow.to_date).map do |offorder|
+			object.offorders.where("status = '1' and date(start_time) = ?",DateTime.now.tomorrow.to_date).map do |offorder|
 				Api::V1::TomorrowSerializer::BoxSerializer::OfforderSerializer.new(offorder, scope: scope, root: false, box: object)
 			end
 		end
