@@ -26,7 +26,7 @@ class Api::V1::SchedulesController < Api::V1::BaseController
 			#),
 			:week => Api::V1::ScheduleSerializer.new(@carwash, root: false).as_json,
 			:today => Api::V1::TodaySerializer.new(@carwash, root: false).as_json,
-			:tomorrow => Api::V1::CarwashSerializer.new(@carwash, root: false).as_json,
+			:tomorrow => Api::V1::TomorrowSerializer.new(@carwash, root: false).as_json,
 			#:orders => @orders.as_json
 		}
 	
