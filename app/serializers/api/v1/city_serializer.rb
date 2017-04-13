@@ -42,8 +42,8 @@ class Api::V1::CitySerializer < Api::V1::BaseSerializer
 		end
 
 		class PriceSerializer < Api::V1::BaseSerializer
-			attribute :price#, if: :KS_for_1?
-
+			attribute :price
+			
 			def lowest
 				if KS_for_1?
 					object.price
