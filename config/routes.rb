@@ -34,7 +34,7 @@
       resources :sessions, only: [:create, :index]
       resources :carwashes, only: [:show, :index]
       resources :favorites, only: [:index]
-      resources :schedules, only: [:show]
+      resources :schedules, only: [:show, :create]
       match '/favorites/:id', to: 'favorites#index',      via:'get'
     end
   end
