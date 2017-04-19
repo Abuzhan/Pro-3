@@ -2,7 +2,7 @@ class Api::V1::TomorrowSerializer < Api::V1::BaseSerializer
 	attributes :boxes
 
 	def boxes
-		object.boxes.where("online = true").map do |box|
+		object.boxes.where("online = 't'").map do |box|
 				Api::V1::TomorrowSerializer::BoxSerializer.new(box, scope: scope, root: false, carwash: object)
 		end
 	end
