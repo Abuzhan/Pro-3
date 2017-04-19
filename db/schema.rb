@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310052954) do
+ActiveRecord::Schema.define(version: 20170419185750) do
 
   create_table "boxes", force: true do |t|
     t.integer  "carwash_id"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20170310052954) do
   end
 
   create_table "offorderservices", force: true do |t|
-    t.integer  "order_id"
+    t.integer  "offorder_id"
     t.boolean  "status",      default: true
     t.integer  "offprice_id"
     t.datetime "created_at"
