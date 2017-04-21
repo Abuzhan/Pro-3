@@ -28,4 +28,5 @@ class Api::V1::OrderSerializer < Api::V1::BaseSerializer
 	def price
 		object.price.price
 	end
+	
 end
