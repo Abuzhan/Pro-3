@@ -33,10 +33,12 @@ class Api::V1::UsersController < Api::V1::BaseController
 	end
 
 	def update
-		@user = User.find(params[:id])
+		user = User.find(params[:id])
 		authorize user
 
-		if !@user.update_attributes(update_params)
+		
+
+		if !user.update_attribute(phone_number: update_params[:phone_number])
 			return api_error(status:422, errors: user.errors)
 		end
 
@@ -57,7 +59,9 @@ class Api::V1::UsersController < Api::V1::BaseController
 	end
 
 	def update_params
-		create_params
+		params.require(:user).permit(
+			:phone_number, :name, :car_type_id, :city_id
+		)#.delete_if{ |k,v| v.nil?}
 	end
 
 end

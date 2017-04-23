@@ -1,5 +1,5 @@
 class Api::V1::OrderSerializer < Api::V1::BaseSerializer
-	attributes :id, :user_id, :user_name, :carwash_id, :carwash_name, :box_id, :price_id, :price, :status, :start_time, :end_time
+	attributes :id, :user_id, :user_name, :carwash_id, :carwash_address, :carwash_name, :box_id, :service_name, :car_type, :price_id, :price, :status, :start_time, :end_time
 
 	def user_id
 		object.user.id
@@ -17,8 +17,20 @@ class Api::V1::OrderSerializer < Api::V1::BaseSerializer
 		object.box.carwash.id
 	end
 
+	def carwash_address
+		object.box.carwash.address
+	end
+
 	def carwash_name
 		object.box.carwash.name
+	end
+
+	def service_name
+		object.price.service.name
+	end
+
+	def car_type
+		object.price.car_type.name
 	end
 
 	def price_id

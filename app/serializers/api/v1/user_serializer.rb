@@ -48,5 +48,4 @@ class Api::V1::UserSerializer < Api::V1::BaseSerializer
 				attribute :price
 			end
 		end
-
 end

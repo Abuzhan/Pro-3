@@ -48,7 +48,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
 		if @order.user == @current_user
 			@order.status = "2"
 			@order.save!
-			msg = "Cancelled!"
+			msg = "Dancelled"
 			render :json => msg, status: 200
 		else
 			return api_error(status: 401, errors: "Unauthorized")

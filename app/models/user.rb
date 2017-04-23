@@ -22,8 +22,8 @@ class User < ActiveRecord::Base
 	VALID_PHONE_REGEX = /7(0|1|2|4|5|6|7)(0|1|2|3|4|5|6|7|8)\d{7}/i
 
 	validates :city_id, presence: true
-	validates :name, presence: true, length: { maximum: 50 }
-	validates :password, length: { minimum: 6 }
+	validates :name, presence: true, length: {minimum: 3, maximum: 50 }
+	validates :password, length: { minimum: 6 }, unless: :skip_password
 	validates :phone_number, presence: true, format: {with: VALID_PHONE_REGEX}, length: { is: 10}, uniqueness: true
 	validates :car_type_id, presence: true
 
