@@ -24,7 +24,8 @@ class Api::V1::BaseController < ApplicationController
 	end
 
 	def unauthorized!
-		render json: { error: 'not authorized' }, status: 403
+		return api_error(status: 403)
+		#render json: { error: 'not authorized' }, status: 403
 	end
 
 	def invalid_resource!(errors = [])

@@ -30,7 +30,7 @@
   #api
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:index, :create, :show, :update, :destroy]
+      resources :users, only: [:index, :create, :show, :update]
       resources :sessions, only: [:create, :index]
       resources :carwashes, only: [:show, :index]
       resources :favorites, only: [:index, :create, :destroy]

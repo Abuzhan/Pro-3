@@ -1,11 +1,7 @@
 class Api::V1::SessionSerializer < Api::V1::BaseSerializer
 	attributes :id, :name, :phone_number, :token, :created_at, :car_type_id, :car_type_name, :city_id, :city_name, :city_carwashes
-	
-	#belongs_to :city
 
 	has_many :favorite_carwashes, serializer: Api::V1::CarwashSerializer
-
-
 
 	def token
 		object.authentication_token
@@ -51,7 +47,7 @@ class Api::V1::SessionSerializer < Api::V1::BaseSerializer
 			end
 
 			class PriceSerializer < Api::V1::BaseSerializer
-				attribute :price#, if: :KS_for_1?
+				attribute :price
 			end
 		end
 	

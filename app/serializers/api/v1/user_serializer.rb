@@ -45,7 +45,7 @@ class Api::V1::UserSerializer < Api::V1::BaseSerializer
 			end
 
 			class PriceSerializer < Api::V1::BaseSerializer
-				attribute :price#, if: :KS_for_1?
+				attribute :price
 			end
 		end
 
