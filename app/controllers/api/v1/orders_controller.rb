@@ -15,6 +15,9 @@ class Api::V1::OrdersController < Api::V1::BaseController
 		#		}
 		#	)
 		#}
+		render :json => {
+			:user_orders => @user.orders.as_json
+		
 
 		render json: @user.orders, each_serializer: Api::V1::OrderSerializer
 

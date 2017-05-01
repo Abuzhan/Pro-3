@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 	
 	has_many :favorites, dependent: :destroy
 	has_many :favorite_carwashes, through: :favorites, source: :carwash
-	has_many :orders
+	has_many :orders, :order => "created_at DESC"
 	#has_many :carwashes
 	
 	before_create :create_remember_token
@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
 		end
 
 #		def destroy_outdated_carwash_associations(current_ids, ids)
- #   		(current_ids - ids).each { |id| favorites.select{|b| b.carwash_id == id}.first.destroy }
+#   		(current_ids - ids).each { |id| favorites.select{|b| b.carwash_id == id}.first.destroy }
 #	  	end
 #
 #	  	def update_carwash_association_position(id, position)
