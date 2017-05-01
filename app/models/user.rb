@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
 	validates :city_id, presence: true
 	validates :name, presence: true, length: {minimum: 3, maximum: 50 }
-	validates :password, length: { minimum: 6 }, unless: :skip_password
+	validates :password, length: { minimum: 6 }#, unless: :skip_password
 	validates :phone_number, presence: true, format: {with: VALID_PHONE_REGEX}, length: { is: 10}, uniqueness: true
 	validates :car_type_id, presence: true
 

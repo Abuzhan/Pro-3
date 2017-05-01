@@ -5,8 +5,8 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 
 	def show
 		@carwash = Carwash.find(params[:id])
-		#request_user_id = request.headers['User']
 		@user = @current_user
+
 		if @user.favorite?(@carwash)
 			favorite = "Yes"
 		else
@@ -39,18 +39,18 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 				}
 			),
 			:favorite? => favorite.as_json,
-			#:favorite => @user.favorites.where("carwash_id = ?",@carwash.id).as_json(only: [:id])
 		}
 	end
 
 	def index
-		#@user = User.find_by(params[:id])
+
 		request_city_id = request.headers['City']
 		@city = City.find(request_city_id)
-		#@carwashes = Carwash.all
+
 		render(
 			json:Api::V1::CitySerializer.new(@city, root: false).as_json,
 		)
+		
 	end
 
 end
