@@ -6,6 +6,7 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 	def show
 		@carwash = Carwash.find(params[:id])
 		@user = @current_user
+		@services = Service.all
 
 		if @user.favorite?(@carwash)
 			favorite = "Yes"
@@ -15,6 +16,8 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 		
 
 		render :json => {
+			:services => @services.as_json(
+				only: [:id, :name]),
 			:carwash => @carwash.as_json(
 				only: [:id, :name, :phone_number, :address, :contacts], 
 				include: { 
