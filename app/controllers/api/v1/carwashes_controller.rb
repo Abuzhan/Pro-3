@@ -7,6 +7,7 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 		@carwash = Carwash.find(params[:id])
 		@user = @current_user
 		@services = Service.all
+		@services = @services.sort { |x,y| x.name.length <=> y.name.length }
 
 		if @user.favorite?(@carwash)
 			favorite = "Yes"
