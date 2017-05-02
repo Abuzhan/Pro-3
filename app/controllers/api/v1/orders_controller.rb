@@ -34,21 +34,28 @@ class Api::V1::OrdersController < Api::V1::BaseController
 		user = @current_user
 		order = user.orders.build(create_params)
 		return api_error(status: 422, errors: order.errors) unless order.valid?
-		order.save!
 
-		render(
-			json: Api::V1::OrderSerializer.new(order).to_json,
-			status: 201,
-			serizalizer: Api::V1::OrderSerializer
-		)
-	end	
+		user_orders = user.orders.where("status = '1' and date(start_time) >= ?",Date.today)
+		
+		if user_orders.length >= 3
+			return api_error(status: 429, errors: "User reached the maximum level of orders")
+		else
+			order.save!
+
+			render(
+				json: Api::V1::OrderSerializer.new(order).to_json,
+				status: 201,
+				serizalizer: Api::V1::OrderSerializer
+			)
+		end
+	end
 
 	def destroy
 		@order = Order.find(params[:id])
 		if @order.user == @current_user
 			@order.status = "2"
 			@order.save!
-			msg = "Dancelled"
+			msg = "Cancelled"
 			render :json => msg, status: 200
 		else
 			return api_error(status: 401, errors: "Unauthorized")

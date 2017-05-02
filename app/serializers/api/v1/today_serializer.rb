@@ -11,7 +11,7 @@ class Api::V1::TodaySerializer < Api::V1::BaseSerializer
 		attributes :id, :orders, :offorders
 
 		def orders
-			object.orders.where(["status = '1' and date(start_time) = ?",Date.today]).map do |order|
+			object.orders.where("status = '1' and date(start_time) = ?",Date.today).map do |order|
 				Api::V1::TodaySerializer::BoxSerializer::OrderSerializer.new(order, scope: scope, root: false, box: object)
 			end
 		end
