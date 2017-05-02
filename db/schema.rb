@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419185750) do
+ActiveRecord::Schema.define(version: 20170502041234) do
 
   create_table "boxes", force: true do |t|
     t.integer  "carwash_id"
@@ -73,6 +73,10 @@ ActiveRecord::Schema.define(version: 20170419185750) do
     t.datetime "updated_at"
     t.boolean  "status",     default: true
   end
+
+  add_index "favorites", ["carwash_id"], name: "index_favorites_on_carwash_id"
+  add_index "favorites", ["user_id", "carwash_id"], name: "index_favorites_on_user_id_and_carwash_id", unique: true
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
 
   create_table "offorders", force: true do |t|
     t.integer  "box_id"

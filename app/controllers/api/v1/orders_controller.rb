@@ -7,19 +7,16 @@ class Api::V1::OrdersController < Api::V1::BaseController
 		@user = @current_user
 
 		#render :json => {
-		#	:myorders => @user.orders.as_json(
-		#		only: [:id, :box_id, :start_time, :end_time, :status],
+		#	:orders => @user.orders.as_json(
+		#		only: [:id, :carwash_name, :carwash_address, :service_name :start_time, :end_time, :status],
 		#		include: {
 		#			box: { only: [:id], include: { carwash: {only: [:id, :name, :address]}}},
 		#			price: { only: [:id, :price]}
 		#		}
 		#	)
 		#}
-		render :json => {
-			:user_orders => @user.orders.as_json
-		
 
-		render json: @user.orders, each_serializer: Api::V1::OrderSerializer
+		render json: @user.orders, each_serializer: Api::V1::AllorderSerializer
 
 	end
 
@@ -41,7 +38,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
 
 		render(
 			json: Api::V1::OrderSerializer.new(order).to_json,
-			status: 200,
+			status: 201,
 			serizalizer: Api::V1::OrderSerializer
 		)
 	end	
@@ -64,7 +61,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
 
 	def create_params
 		params.require(:order).permit(
-			:user_id, :box_id, :start_time, :end_time, :price_id, :status
+			:box_id, :start_time, :end_time, :price_id, :status
 			).delete_if{ |k,v| v.nil?}
 	end
 

@@ -4,8 +4,7 @@ class Api::V1::FavoritesController < Api::V1::BaseController
 	before_filter :authenticate_user!
 
 	def index
-		@user = User.find(params[:id])
-		authorize @user
+		@user = @current_user
 
 		render(
 			json: Api::V1::FavoriteSerializer.new(@user).to_json,
@@ -27,14 +26,15 @@ class Api::V1::FavoritesController < Api::V1::BaseController
 	def destroy
 		@carwash = Carwash.find(params[:id])
 		@user = @current_user
-		if @user.favorites.where("carwash_id =?", @carwash.id).map do |favorite|
-				favorite.destroy
-				msg = "Deleted"
-				render :json => msg, status: 200
-			end
+		favorite = @user.favorites.where("carwash_id =?", @carwash.id)
+		if favorite.exists?
+			favorite.destroy_all
+			msg = "Deleted"
+			render :json => msg, status: 200
 		else 
-			return api_error(status: 401, errors: "Unauthorized")
+			return api_error(status: 401, errors: "No such relationship")
 		end
+
 	end
 
 	private
