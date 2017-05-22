@@ -24,7 +24,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
 		@order = Order.find(params[:id])
 		@user = @current_user
 		if @order.user == @user
-			render json: @order, serializer: Api::V1::OrderSerializer
+			render json: @order, serializer: Api::V1::AllorderSerializer
 		else
 			return api_error(status: 401, errors: "Unauthorized")
 		end

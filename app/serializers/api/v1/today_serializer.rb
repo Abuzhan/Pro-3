@@ -12,7 +12,9 @@ class Api::V1::TodaySerializer < Api::V1::BaseSerializer
 
 		def orders
 			object.orders.where("status = '1' and date(start_time) = ?",Date.today).map do |order|
-				Api::V1::TodaySerializer::BoxSerializer::OrderSerializer.new(order, scope: scope, root: false, box: object)
+				if order.end_time.to_i > Time.now.to_i + 6*60*60
+					Api::V1::TodaySerializer::BoxSerializer::OrderSerializer.new(order, scope: scope, root: false, box: object)
+				end
 			end
 		end
 

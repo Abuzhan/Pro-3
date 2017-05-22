@@ -18,5 +18,10 @@ class Order < ActiveRecord::Base
 	#validates :worker_id, presence: true
 	validates :discount, length: {maximum: 6}
 	validates :details, length: {maximum: 150}
+
+	#def as_json(options={})
+    #	super(options).reject { |k, v| v.nil? }
+  	#end
+
 	
 end
