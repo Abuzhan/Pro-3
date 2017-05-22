@@ -18,8 +18,8 @@ class Api::V1::TodaySerializer < Api::V1::BaseSerializer
 				end
 			end
 =end
-		time = Time.now + 6*60*60
-		object.orders.where("status = '1' and date(start_time) = ? and end_time > ?",Date.today,time).map do |order|
+			time = Time.now + 6*60*60
+			object.orders.where("status = '1' and date(start_time) = ? and end_time > ?",Date.today,time).map do |order|
 					Api::V1::TodaySerializer::BoxSerializer::OrderSerializer.new(order, scope: scope, root: false, box: object)
 			end
 		end
@@ -29,7 +29,8 @@ class Api::V1::TodaySerializer < Api::V1::BaseSerializer
 		end
 
 		def offorders
-			object.offorders.where("status = 't' and date(start_time) = ?",Date.today).map do |offorder|
+			time = Time.now + 6*60*60
+			object.offorders.where("status = 't' and date(start_time) = ? and end_time > ?",Date.today,time).map do |offorder|
 				Api::V1::TodaySerializer::BoxSerializer::OfforderSerializer.new(offorder, scope: scope, root: false, box: object)
 			end
 		end
