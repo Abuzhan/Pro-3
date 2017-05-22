@@ -11,10 +11,16 @@ class Api::V1::TodaySerializer < Api::V1::BaseSerializer
 		attributes :id, :orders, :offorders
 
 		def orders
+=begin
 			object.orders.where("status = '1' and date(start_time) = ?",Date.today).map do |order|
 				if order.end_time.to_i > Time.now.to_i + 6*60*60
 					Api::V1::TodaySerializer::BoxSerializer::OrderSerializer.new(order, scope: scope, root: false, box: object)
 				end
+			end
+=end
+		time = Time.now + 6*60*60
+		object.orders.where("status = '1' and date(start_time) = ? and datetime(end_time) > ?",Date.today,time).map do |order|
+					Api::V1::TodaySerializer::BoxSerializer::OrderSerializer.new(order, scope: scope, root: false, box: object)
 			end
 		end
 
