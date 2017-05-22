@@ -19,7 +19,7 @@ class Api::V1::TodaySerializer < Api::V1::BaseSerializer
 			end
 =end
 		time = Time.now + 6*60*60
-		object.orders.where("status = '1' and date(start_time) = ? and datetime(cast(end_time as TEXT)) > ?",Date.today,time).map do |order|
+		object.orders.where("status = '1' and to_date(start_time) = ? and to_timestamp(end_time) > ?",Date.today,time).map do |order|
 					Api::V1::TodaySerializer::BoxSerializer::OrderSerializer.new(order, scope: scope, root: false, box: object)
 			end
 		end
