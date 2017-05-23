@@ -36,6 +36,8 @@
       resources :favorites, only: [:index, :create, :destroy]
       resources :schedules, only: [:show, :create]
       resources :orders, only: [:index, :show, :create, :destroy]
+      resources :contacts
+      resources :abouts
       match '/favorites/:id', to: 'favorites#index',      via:'get'
     end
   end

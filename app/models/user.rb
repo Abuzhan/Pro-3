@@ -23,17 +23,17 @@ class User < ActiveRecord::Base
 
 	validates :city_id, presence: true
 	validates :name, presence: true, length: {minimum: 3, maximum: 50 }
-	validates :password, length: { minimum: 6 }#, unless: :skip_password
+	validates :password, :confirmation => true, length: { minimum: 6 }, :presence => true, :if => :password#, unless: :skip_password
 	validates :phone_number, presence: true, format: {with: VALID_PHONE_REGEX}, length: { is: 10}, uniqueness: true
 	validates :car_type_id, presence: true
 
-	def update_attributes(params)
-		if params[:password].blank?
-			params.delete :paaword
+=begin	def update_attributes(params)
+		if params[:user][:password].blank?
+			params.delete :password
 			params.delete :password_confirmation
-			super params
 		end
 	end
+=end
 
 	#attr_accessible :carwash_ids
 
