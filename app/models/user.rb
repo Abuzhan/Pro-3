@@ -27,6 +27,14 @@ class User < ActiveRecord::Base
 	validates :phone_number, presence: true, format: {with: VALID_PHONE_REGEX}, length: { is: 10}, uniqueness: true
 	validates :car_type_id, presence: true
 
+	def update_attributes(params)
+		if params[:password].blank?
+			params.delete :paaword
+			params.delete :password_confirmation
+			super params
+		end
+	end
+
 	#attr_accessible :carwash_ids
 
 

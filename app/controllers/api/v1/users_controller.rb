@@ -38,7 +38,7 @@ class Api::V1::UsersController < Api::V1::BaseController
 
 		
 
-		if !user.update_attributes(update_params)
+		if !user.update_attributes(params[:user])
 			return api_error(status:422, errors: user.errors)
 		end
 
@@ -58,10 +58,11 @@ class Api::V1::UsersController < Api::V1::BaseController
 		).delete_if{ |k,v| v.nil?}
 	end
 
-	def update_params
+=begin	def update_params
 		params.require(:user).permit(
 			:phone_number, :name, :car_type_id, :city_id
 		)#.delete_if{ |k,v| v.nil?}
 	end
+=end
 
 end
