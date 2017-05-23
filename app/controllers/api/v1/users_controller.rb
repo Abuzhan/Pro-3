@@ -38,7 +38,7 @@ class Api::V1::UsersController < Api::V1::BaseController
 
 		
 
-		if !user.update_attributes(update_params[:phone_number])
+		if !user.update_attributes(update_params)
 			return api_error(status:422, errors: user.errors)
 		end
 

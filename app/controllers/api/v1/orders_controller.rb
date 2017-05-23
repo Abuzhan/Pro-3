@@ -37,7 +37,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
 
 		user_orders = user.orders.where("status = '1' and date(start_time) >= ?",Date.today)
 		
-		if user_orders.length >= 3
+		if user_orders.length >= 50
 			return api_error(status: 429, errors: "User reached the maximum level of orders")
 		else
 			order.save!
