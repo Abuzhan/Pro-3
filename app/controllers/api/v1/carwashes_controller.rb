@@ -14,6 +14,11 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 		else
 			favorite = "No"
 		end
+
+		@prices = @carwash.prices
+		@prices = @prices.sort { |x,y| x.car_type.priority <=> y.car_type.priority }
+
+		
 		
 
 		render :json => {
@@ -23,7 +28,7 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 				only: [:id, :name, :phone_number, :address, :contacts], 
 				include: { 
 					city: { only: [:id, :name]},
-					prices: { only: [:id, :price, :description], 
+=begin					prices: { only: [:id, :price, :description], 
 						include: { 
 							car_type: { only: [:id, :name]}, 
 							service: {only: [:id, :name]}
@@ -40,10 +45,22 @@ class Api::V1::CarwashesController < Api::V1::BaseController
 							car_type: { only: [:id, :name]}
 						}
 					}
+=end
 				}
 			),
-			:favorite? => favorite.as_json,
+			:prices => @prices.as_json(
+				only: [:id, :price, :description], 
+						include: { 
+							car_type: { only: [:id, :name, :priority]}, 
+							service: {only: [:id, :name]}
+						}
+			),
+			:favorite? => favorite.as_json
 		}
+
+		#render :json => {
+		#	:carwash => Api::V1::CarinfoSerializer.new()
+		#}
 	end
 
 	def index

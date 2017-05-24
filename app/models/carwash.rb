@@ -10,7 +10,7 @@ class Carwash < ActiveRecord::Base
 	#belongs_to :user
 	
 	has_many :boxes
-	has_many :schedules
+	has_many :schedules#, :order => "priority DESC"
 	has_many :prices
 	has_many :workers
 	has_many :offprices
